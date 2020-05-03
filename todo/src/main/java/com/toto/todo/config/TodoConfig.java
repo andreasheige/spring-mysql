@@ -6,14 +6,16 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 
 import javax.sql.DataSource;
 
+// Scan this package
 @ComponentScan("com.todo")
 public class TodoConfig {
-    
+     
     private DataSource dataSource;
 
     public TodoConfig(DataSource dataSource) {
         this.dataSource = dataSource;
     }
+    // Specify which package Hibernate should scan
     @Bean
     public LocalSessionFactoryBean sessionFactory() {
         final LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();

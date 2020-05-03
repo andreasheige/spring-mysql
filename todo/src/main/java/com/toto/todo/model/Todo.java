@@ -38,6 +38,7 @@ public class Todo implements Serializable{
     @LastModifiedDate
     private Date updatedAt;
 
+    // G & S 
     public Long getId() {
         return id;
     }

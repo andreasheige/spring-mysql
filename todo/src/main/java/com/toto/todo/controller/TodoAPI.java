@@ -27,22 +27,26 @@ public class TodoAPI {
     @Autowired
     TodoRepository todoRepository;
 
+    // Get all
     @GetMapping("/todos")
     public List<Todo> getAllTodos(){
         return todoRepository.findAll();
     }
 
+    // Create
     @PostMapping("/todos")
     public Todo crateTodo(@Valid @RequestBody Todo todo) {
         return todoRepository.save(todo);
     }
 
+    // Get by ID
     @GetMapping("/todos/{id}")
     public Todo getTodoById(@PathVariable(value = "id") Long todoId) {
         return todoRepository.findById(todoId)
                 .orElseThrow(() -> new NotFoundException("Todo", "Id", "todoId"));
     }
 
+    // Update 
     @PutMapping("/todos/{id}")
     public Todo updateTodo(@PathVariable(value = "id") Long todoId, 
                 @Valid @RequestBody Todo todoDetails) {
@@ -57,6 +61,7 @@ public class TodoAPI {
                 return updateTodo;
     }
 
+    // Delete
     @DeleteMapping("/todos/{id}")
     public ResponseEntity<?> deleteTodo(@PathVariable(value = "id") Long todoId) {
         Todo todo = todoRepository.findById(todoId)
